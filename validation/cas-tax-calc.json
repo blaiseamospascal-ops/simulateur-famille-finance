@@ -1,0 +1,516 @@
+{
+ "about": "Cas de validation du moteur fiscal (revenus 2025, exercice 2026) contre Tax-Calc (SPF Finances). Encoder dans Tax-Calc : code 1250/2250 = rémunérations (valeur code1250), taxe communale 8 %, enfants à charge, frais de garde. Reporter le total « solde » (impôt total, avant précompte) dans taxcalc.total.",
+ "tolerance": 50,
+ "cases": [
+  {
+   "id": "C01",
+   "description": "isolé, 45 000 € brut, sans enfant",
+   "incomeYear": 2025,
+   "couple": false,
+   "persons": [
+    {
+     "taxableGross": 45000,
+     "personalOnss": 5881.5,
+     "code1250": 39118.5
+    }
+   ],
+   "dependentChildren": 0,
+   "childrenUnder3NoChildcare": 0,
+   "childcare": [],
+   "communalRate": 0.08,
+   "taxcalc": {
+    "total": null,
+    "date": null
+   }
+  },
+  {
+   "id": "C02",
+   "description": "isolé, 60 000 €, sans enfant",
+   "incomeYear": 2025,
+   "couple": false,
+   "persons": [
+    {
+     "taxableGross": 60000,
+     "personalOnss": 7842.0,
+     "code1250": 52158.0
+    }
+   ],
+   "dependentChildren": 0,
+   "childrenUnder3NoChildcare": 0,
+   "childcare": [],
+   "communalRate": 0.08,
+   "taxcalc": {
+    "total": null,
+    "date": null
+   }
+  },
+  {
+   "id": "C03",
+   "description": "parent seul, 45 000 €, 1 enfant",
+   "incomeYear": 2025,
+   "couple": false,
+   "persons": [
+    {
+     "taxableGross": 45000,
+     "personalOnss": 5881.5,
+     "code1250": 39118.5
+    }
+   ],
+   "dependentChildren": 1,
+   "childrenUnder3NoChildcare": 0,
+   "childcare": [],
+   "communalRate": 0.08,
+   "taxcalc": {
+    "total": null,
+    "date": null
+   }
+  },
+  {
+   "id": "C04",
+   "description": "parent seul, 52 000 €, 2 enfants",
+   "incomeYear": 2025,
+   "couple": false,
+   "persons": [
+    {
+     "taxableGross": 52000,
+     "personalOnss": 6796.4,
+     "code1250": 45203.6
+    }
+   ],
+   "dependentChildren": 2,
+   "childrenUnder3NoChildcare": 0,
+   "childcare": [],
+   "communalRate": 0.08,
+   "taxcalc": {
+    "total": null,
+    "date": null
+   }
+  },
+  {
+   "id": "C05",
+   "description": "couple, 2 × 50 000 €, sans enfant",
+   "incomeYear": 2025,
+   "couple": true,
+   "persons": [
+    {
+     "taxableGross": 50000,
+     "personalOnss": 6535.0,
+     "code1250": 43465.0
+    },
+    {
+     "taxableGross": 50000,
+     "personalOnss": 6535.0,
+     "code1250": 43465.0
+    }
+   ],
+   "dependentChildren": 0,
+   "childrenUnder3NoChildcare": 0,
+   "childcare": [],
+   "communalRate": 0.08,
+   "taxcalc": {
+    "total": null,
+    "date": null
+   }
+  },
+  {
+   "id": "C06",
+   "description": "couple, 60 000 € + 0 € (quotient conjugal plein)",
+   "incomeYear": 2025,
+   "couple": true,
+   "persons": [
+    {
+     "taxableGross": 60000,
+     "personalOnss": 7842.0,
+     "code1250": 52158.0
+    },
+    {
+     "taxableGross": 0,
+     "personalOnss": 0.0,
+     "code1250": 0.0
+    }
+   ],
+   "dependentChildren": 0,
+   "childrenUnder3NoChildcare": 0,
+   "childcare": [],
+   "communalRate": 0.08,
+   "taxcalc": {
+    "total": null,
+    "date": null
+   }
+  },
+  {
+   "id": "C07",
+   "description": "couple, 90 000 € + 0 € (plafond du quotient)",
+   "incomeYear": 2025,
+   "couple": true,
+   "persons": [
+    {
+     "taxableGross": 90000,
+     "personalOnss": 11763.0,
+     "code1250": 78237.0
+    },
+    {
+     "taxableGross": 0,
+     "personalOnss": 0.0,
+     "code1250": 0.0
+    }
+   ],
+   "dependentChildren": 0,
+   "childrenUnder3NoChildcare": 0,
+   "childcare": [],
+   "communalRate": 0.08,
+   "taxcalc": {
+    "total": null,
+    "date": null
+   }
+  },
+  {
+   "id": "C08",
+   "description": "couple, 60 000 € + 12 000 € (quotient partiel)",
+   "incomeYear": 2025,
+   "couple": true,
+   "persons": [
+    {
+     "taxableGross": 60000,
+     "personalOnss": 7842.0,
+     "code1250": 52158.0
+    },
+    {
+     "taxableGross": 12000,
+     "personalOnss": 1568.4,
+     "code1250": 10431.6
+    }
+   ],
+   "dependentChildren": 0,
+   "childrenUnder3NoChildcare": 0,
+   "childcare": [],
+   "communalRate": 0.08,
+   "taxcalc": {
+    "total": null,
+    "date": null
+   }
+  },
+  {
+   "id": "C09",
+   "description": "couple, 60 000 € + 48 000 €, 1 enfant",
+   "incomeYear": 2025,
+   "couple": true,
+   "persons": [
+    {
+     "taxableGross": 60000,
+     "personalOnss": 7842.0,
+     "code1250": 52158.0
+    },
+    {
+     "taxableGross": 48000,
+     "personalOnss": 6273.6,
+     "code1250": 41726.4
+    }
+   ],
+   "dependentChildren": 1,
+   "childrenUnder3NoChildcare": 0,
+   "childcare": [],
+   "communalRate": 0.08,
+   "taxcalc": {
+    "total": null,
+    "date": null
+   }
+  },
+  {
+   "id": "C10",
+   "description": "couple, 60 000 € + 48 000 €, 2 enfants",
+   "incomeYear": 2025,
+   "couple": true,
+   "persons": [
+    {
+     "taxableGross": 60000,
+     "personalOnss": 7842.0,
+     "code1250": 52158.0
+    },
+    {
+     "taxableGross": 48000,
+     "personalOnss": 6273.6,
+     "code1250": 41726.4
+    }
+   ],
+   "dependentChildren": 2,
+   "childrenUnder3NoChildcare": 0,
+   "childcare": [],
+   "communalRate": 0.08,
+   "taxcalc": {
+    "total": null,
+    "date": null
+   }
+  },
+  {
+   "id": "C11",
+   "description": "couple, 60 000 € + 48 000 €, 3 enfants",
+   "incomeYear": 2025,
+   "couple": true,
+   "persons": [
+    {
+     "taxableGross": 60000,
+     "personalOnss": 7842.0,
+     "code1250": 52158.0
+    },
+    {
+     "taxableGross": 48000,
+     "personalOnss": 6273.6,
+     "code1250": 41726.4
+    }
+   ],
+   "dependentChildren": 3,
+   "childrenUnder3NoChildcare": 0,
+   "childcare": [],
+   "communalRate": 0.08,
+   "taxcalc": {
+    "total": null,
+    "date": null
+   }
+  },
+  {
+   "id": "C12",
+   "description": "couple, 60 000 € + 48 000 €, 4 enfants",
+   "incomeYear": 2025,
+   "couple": true,
+   "persons": [
+    {
+     "taxableGross": 60000,
+     "personalOnss": 7842.0,
+     "code1250": 52158.0
+    },
+    {
+     "taxableGross": 48000,
+     "personalOnss": 6273.6,
+     "code1250": 41726.4
+    }
+   ],
+   "dependentChildren": 4,
+   "childrenUnder3NoChildcare": 0,
+   "childcare": [],
+   "communalRate": 0.08,
+   "taxcalc": {
+    "total": null,
+    "date": null
+   }
+  },
+  {
+   "id": "C13",
+   "description": "couple, 60 000 € + 48 000 €, 5 enfants",
+   "incomeYear": 2025,
+   "couple": true,
+   "persons": [
+    {
+     "taxableGross": 60000,
+     "personalOnss": 7842.0,
+     "code1250": 52158.0
+    },
+    {
+     "taxableGross": 48000,
+     "personalOnss": 6273.6,
+     "code1250": 41726.4
+    }
+   ],
+   "dependentChildren": 5,
+   "childrenUnder3NoChildcare": 0,
+   "childcare": [],
+   "communalRate": 0.08,
+   "taxcalc": {
+    "total": null,
+    "date": null
+   }
+  },
+  {
+   "id": "C14",
+   "description": "couple, 60 000 € + 38 400 € (4/5), 2 enfants",
+   "incomeYear": 2025,
+   "couple": true,
+   "persons": [
+    {
+     "taxableGross": 60000,
+     "personalOnss": 7842.0,
+     "code1250": 52158.0
+    },
+    {
+     "taxableGross": 38400,
+     "personalOnss": 5018.88,
+     "code1250": 33381.12
+    }
+   ],
+   "dependentChildren": 2,
+   "childrenUnder3NoChildcare": 0,
+   "childcare": [],
+   "communalRate": 0.08,
+   "taxcalc": {
+    "total": null,
+    "date": null
+   }
+  },
+  {
+   "id": "C15",
+   "description": "couple, 60 000 € + 24 000 € (mi-temps), 2 enfants",
+   "incomeYear": 2025,
+   "couple": true,
+   "persons": [
+    {
+     "taxableGross": 60000,
+     "personalOnss": 7842.0,
+     "code1250": 52158.0
+    },
+    {
+     "taxableGross": 24000,
+     "personalOnss": 3136.8,
+     "code1250": 20863.2
+    }
+   ],
+   "dependentChildren": 2,
+   "childrenUnder3NoChildcare": 0,
+   "childcare": [],
+   "communalRate": 0.08,
+   "taxcalc": {
+    "total": null,
+    "date": null
+   }
+  },
+  {
+   "id": "C16",
+   "description": "couple, 60 000 € + 0 €, 3 enfants",
+   "incomeYear": 2025,
+   "couple": true,
+   "persons": [
+    {
+     "taxableGross": 60000,
+     "personalOnss": 7842.0,
+     "code1250": 52158.0
+    },
+    {
+     "taxableGross": 0,
+     "personalOnss": 0.0,
+     "code1250": 0.0
+    }
+   ],
+   "dependentChildren": 3,
+   "childrenUnder3NoChildcare": 0,
+   "childcare": [],
+   "communalRate": 0.08,
+   "taxcalc": {
+    "total": null,
+    "date": null
+   }
+  },
+  {
+   "id": "C17",
+   "description": "couple, 50 000 € + 45 000 €, 2 enfants dont 1 de moins de 3 ans sans frais de garde",
+   "incomeYear": 2025,
+   "couple": true,
+   "persons": [
+    {
+     "taxableGross": 50000,
+     "personalOnss": 6535.0,
+     "code1250": 43465.0
+    },
+    {
+     "taxableGross": 45000,
+     "personalOnss": 5881.5,
+     "code1250": 39118.5
+    }
+   ],
+   "dependentChildren": 2,
+   "childrenUnder3NoChildcare": 1,
+   "childcare": [],
+   "communalRate": 0.08,
+   "taxcalc": {
+    "total": null,
+    "date": null
+   }
+  },
+  {
+   "id": "C18",
+   "description": "couple, 50 000 € + 45 000 €, 2 enfants, crèche 200 jours à 25 €",
+   "incomeYear": 2025,
+   "couple": true,
+   "persons": [
+    {
+     "taxableGross": 50000,
+     "personalOnss": 6535.0,
+     "code1250": 43465.0
+    },
+    {
+     "taxableGross": 45000,
+     "personalOnss": 5881.5,
+     "code1250": 39118.5
+    }
+   ],
+   "dependentChildren": 2,
+   "childrenUnder3NoChildcare": 0,
+   "childcare": [
+    {
+     "days": 200,
+     "daily": 25
+    }
+   ],
+   "communalRate": 0.08,
+   "taxcalc": {
+    "total": null,
+    "date": null
+   }
+  },
+  {
+   "id": "C19",
+   "description": "couple, 120 000 € + 30 000 €, 2 enfants",
+   "incomeYear": 2025,
+   "couple": true,
+   "persons": [
+    {
+     "taxableGross": 120000,
+     "personalOnss": 15684.0,
+     "code1250": 104316.0
+    },
+    {
+     "taxableGross": 30000,
+     "personalOnss": 3921.0,
+     "code1250": 26079.0
+    }
+   ],
+   "dependentChildren": 2,
+   "childrenUnder3NoChildcare": 0,
+   "childcare": [],
+   "communalRate": 0.08,
+   "taxcalc": {
+    "total": null,
+    "date": null
+   }
+  },
+  {
+   "id": "C20",
+   "description": "couple, 42 000 € + 42 000 €, 3 enfants, crèche 220 jours à 15 €",
+   "incomeYear": 2025,
+   "couple": true,
+   "persons": [
+    {
+     "taxableGross": 42000,
+     "personalOnss": 5489.4,
+     "code1250": 36510.6
+    },
+    {
+     "taxableGross": 42000,
+     "personalOnss": 5489.4,
+     "code1250": 36510.6
+    }
+   ],
+   "dependentChildren": 3,
+   "childrenUnder3NoChildcare": 0,
+   "childcare": [
+    {
+     "days": 220,
+     "daily": 15
+    }
+   ],
+   "communalRate": 0.08,
+   "taxcalc": {
+    "total": null,
+    "date": null
+   }
+  }
+ ]
+}

@@ -1,0 +1,91 @@
+/* Mise en page : colonne de saisie à gauche, résultats à droite ; une seule colonne sur téléphone.
+   Deux natures de chiffres : « calculé » (encre bleue pleine) et « estimé » (ocre hachuré). */
+:root {
+  --bg: #f4f6f8;
+  --surface: #ffffff;
+  --line: #d9dee5;
+  --ink: #17212c;
+  --muted: #5a6776;
+  --calc: #1d5f86;
+  --calc-soft: #dbe9f2;
+  --est: #a86a12;
+  --est-soft: #f6e8cf;
+  --pos: #2f7a4b;
+  --neg: #b23b3b;
+  --focus: #1d5f86;
+  --font-display: 'Bricolage Grotesque', 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'Public Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --radius: 6px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --bg: #11161c;
+    --surface: #18202a;
+    --line: #2c3742;
+    --ink: #e6ebf0;
+    --muted: #9aa7b4;
+    --calc: #6fb3dc;
+    --calc-soft: #1c3445;
+    --est: #e2a948;
+    --est-soft: #3a2d17;
+    --pos: #6fc48f;
+    --neg: #ee7d7d;
+    --focus: #6fb3dc;
+    color-scheme: dark;
+  }
+}
+:root[data-theme='dark'] {
+  --bg: #11161c;
+  --surface: #18202a;
+  --line: #2c3742;
+  --ink: #e6ebf0;
+  --muted: #9aa7b4;
+  --calc: #6fb3dc;
+  --calc-soft: #1c3445;
+  --est: #e2a948;
+  --est-soft: #3a2d17;
+  --pos: #6fc48f;
+  --neg: #ee7d7d;
+  --focus: #6fb3dc;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.5;
+}
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; margin: 0; line-height: 1.15; }
+h1 { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 700; }
+h2 { font-size: 1.2rem; font-weight: 700; }
+h3 { font-size: 1rem; font-weight: 600; }
+p { margin: 0; }
+a { color: var(--calc); }
+button, input, select, textarea { font: inherit; color: inherit; }
+input, select, textarea {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 6px 8px;
+  min-width: 0;
+}
+button {
+  cursor: pointer;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 6px 12px;
+}
+button:hover { border-color: var(--calc); }
+button.primary { background: var(--calc); color: var(--surface); border-color: var(--calc); font-weight: 600; }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.num { font-variant-numeric: tabular-nums; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+/* Couleurs des scénarios comparés (la situation actuelle reste en encre). */
+:root { --s1: #1d5f86; --s2: #a86a12; --s3: #7b4b9e; --s4: #2f7a4b; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme='light']) { --s1: #6fb3dc; --s2: #e2a948; --s3: #c39be3; --s4: #6fc48f; } }
+:root[data-theme='dark'] { --s1: #6fb3dc; --s2: #e2a948; --s3: #c39be3; --s4: #6fc48f; }
