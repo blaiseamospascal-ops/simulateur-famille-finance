@@ -4,6 +4,7 @@ import type { BudgetSetup, Variant } from './engine/budget';
 import type { Assumptions, Household, LeaveType, WorkPeriod } from './engine/types';
 import type { Rule } from './import/categories';
 import type { Tx } from './import/csv';
+import { defaultDashSettings, normalizeDash, type DashSettings } from './import/dashboard';
 import { DEFAULT_ASSUMPTIONS, DEFAULT_HOUSEHOLD } from './defaults';
 
 export type Planned = { birth: string; birthParent: 'A' | 'B' };
@@ -25,6 +26,8 @@ export interface ProfileState {
   budget: BudgetSetup;
   rules: Rule[];
   ownAccounts: string[];
+  /** Réglages du tableau de bord des dépenses (natures, enfants, revenus réguliers). */
+  dash: DashSettings;
 }
 
 export interface StoredProfile {
@@ -115,6 +118,7 @@ export function exampleState(): ProfileState {
     budget: exampleBudget(),
     rules: [],
     ownAccounts: [],
+    dash: defaultDashSettings(),
   };
 }
 
@@ -129,6 +133,7 @@ export function normalize(raw: any): ProfileState {
   s.basePeriods ??= [];
   s.rules ??= [];
   s.ownAccounts ??= [];
+  s.dash = normalizeDash(raw?.dash);
   s.version = 3;
   return s;
 }

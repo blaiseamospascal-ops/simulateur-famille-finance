@@ -19,6 +19,10 @@ export interface Tx {
   exceptional?: boolean;
   /** Catégorie corrigée à la main. */
   manual?: boolean;
+  /** Utile ou optionnelle, choisi à la main (sinon : commerçant, puis catégorie). */
+  nature?: 'utile' | 'optionnel';
+  /** Dépense pour les enfants, choisi à la main. */
+  kid?: boolean;
 }
 
 export interface ParsedFile {

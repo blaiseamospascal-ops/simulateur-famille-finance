@@ -36,3 +36,13 @@ date;libelle;montant;categorie;contrepartie
 5. Sinon « À classer » (dépense) ou « Revenus » (crédit).
 
 Une dépense de plus de 1 500 € hors crédits, loyer, crèche et épargne est proposée comme exceptionnelle (exclue des moyennes, modifiable). Les doublons entre fichiers qui se recouvrent sont ignorés ; deux paiements identiques le même jour dans un même fichier sont gardés.
+
+## Tableau de bord (onglet « Mes dépenses »)
+
+Calculs dans `src/import/dashboard.ts`, sans accès réseau.
+
+- **Commerçant** : enseignes regroupées (« AD Delhaize Salzinnes 5000 Namur » → Delhaize), sinon les trois premiers mots de la contrepartie, sans code postal, ville ni forme juridique.
+- **Utile ou optionnel** : choix sur l'opération, sinon sur le commerçant, sinon sur la catégorie, sinon valeur par défaut de la catégorie (`DEFAULT_NATURE`). Les services de divertissement (Netflix, Spotify…) sont optionnels. Espèces, divers et « À classer » restent « à qualifier ». Superflu = optionnel ÷ (utile + optionnel).
+- **Enfants** : crèche, école, stages et activités, babysitting, enseignes pour enfants, et ce que l'utilisateur coche ; plus une part estimée (30 % par défaut) des courses, vêtements et santé ; moins les allocations familiales reçues.
+- **Récurrent** : même bénéficiaire, montant stable (±20 %, ±35 % pour un revenu), rythme mensuel (au moins 3 mois), trimestriel (au moins 3 fois) ou annuel (montant à ±10 %).
+- **Revenu régulier** : revenu récurrent ou allocations familiales ; le reste est ponctuel. Modifiable par émetteur.

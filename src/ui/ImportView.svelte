@@ -1,35 +1,24 @@
 <script lang="ts">
   import { ymIndex } from '../engine/simulate';
-  import { CATEGORIES, NON_EXPENSE, compactIban } from '../import/categories';
-  import { decode, merge, ownIbans, parseFile, reclassify, summarize, toGenericCsv, type Tx } from '../import/csv';
+  import { CATEGORIES, NON_EXPENSE } from '../import/categories';
+  import { reclassify, summarize, toGenericCsv, type Tx } from '../import/csv';
+  import { importFiles, ruleFromTx, type FileReport } from '../import/files';
   import { offerFile, type ProfileState } from '../profile';
   import { eur, monthLabel, uid } from './format';
 
   let { st = $bindable(), txs = $bindable() }: { st: ProfileState; txs: Tx[] } = $props();
 
-  let reports: { name: string; format: string; added: number; duplicates: number; skipped: number; warnings: string[] }[] = $state([]);
+  let reports: FileReport[] = $state([]);
   let busy = $state(false);
   let dragging = $state(false);
 
   async function handleFiles(files: FileList | File[] | null) {
     if (!files?.length) return;
     busy = true;
-    const out: typeof reports = [];
-    let all = txs;
-    for (const f of Array.from(files)) {
-      try {
-        const text = decode(await f.arrayBuffer());
-        const parsed = parseFile(text, st.rules, st.ownAccounts);
-        for (const acc of ownIbans(parsed.rows)) if (!st.ownAccounts.map(compactIban).includes(acc)) st.ownAccounts.push(acc);
-        const m = merge(all, parsed.rows);
-        all = m.all;
-        out.push({ name: f.name, format: parsed.format, added: m.added, duplicates: m.duplicates, skipped: parsed.skipped, warnings: parsed.warnings });
-      } catch {
-        out.push({ name: f.name, format: 'illisible', added: 0, duplicates: 0, skipped: 0, warnings: ['Fichier illisible : est-ce bien un CSV ?'] });
-      }
-    }
-    txs = reclassify(all, st.rules, st.ownAccounts);
-    reports = out;
+    const r = await importFiles(files, txs, st.rules, st.ownAccounts);
+    st.ownAccounts = r.ownAccounts;
+    txs = r.all;
+    reports = r.reports;
     busy = false;
   }
 
@@ -83,14 +72,9 @@
     t.by = 'à la main';
   }
   function ruleFrom(t: Tx) {
-    const pattern = t.counterparty
-      .toLowerCase()
-      .split(/\s+/)
-      .filter((w) => !/\d/.test(w) && w.length > 1)
-      .slice(0, 3)
-      .join(' ');
-    if (pattern.length < 3) return;
-    st.rules = [{ pattern, category: t.category, sign: t.amount < 0 ? -1 : 1 }, ...st.rules.filter((r) => r.pattern !== pattern)];
+    const r = ruleFromTx(t, t.category);
+    if (!r) return;
+    st.rules = [r, ...st.rules.filter((x) => x.pattern !== r.pattern)];
     txs = reclassify(txs, st.rules, st.ownAccounts);
   }
   function rerun() {

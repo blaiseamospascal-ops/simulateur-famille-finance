@@ -4,9 +4,10 @@ Compare deux situations d'un même ménage, année par année : la situation act
 
 V1 : Belgique, Wallonie, salariés du privé, barèmes 2026 (réforme IPP du 15 juillet 2026 incluse).
 
-Quatre onglets :
+Cinq onglets :
 
 - **Budget et épargne** : revenus calculés (salaires, impôt final, ONEM, allocations) + autres revenus − dépenses réelles (crédits avec date de fin, postes qui tombent quand un parent est à la maison, coupes possibles), dépenses ponctuelles, épargne et placements. Calcule l'épargne nécessaire pour tenir N années et le plafond de dépenses mensuel, pour six variantes (aucune coupe, moitié, budget serré × une ou deux voitures).
+- **Mes dépenses** : encodage mensuel des extraits CSV Beobank et CBC (plusieurs fichiers à la fois, doublons ignorés, mois encodés par compte, liste « À vérifier » dont les choix sont mémorisés), puis tableau de bord : revenus réguliers et ponctuels, dépenses utiles et optionnelles, taux et montant du superflu, coût des enfants (direct, part estimée, allocations déduites), dépenses par catégorie et par commerçant, dépenses récurrentes détectées, évolution mois par mois.
 - **Comparer des scénarios** : l'écart de revenu disponible, année par année, entre la situation actuelle et jusqu'à quatre scénarios.
 - **Relevés bancaires** : import CSV (Beobank, CBC/KBC, format générique, voir FORMATS.md), classement automatique, moyennes mensuelles reportables dans le budget.
 - **Profils et données** : plusieurs profils, export/import de fichier, effacement.
@@ -22,7 +23,7 @@ Quatre onglets :
 
 ```
 src/engine/        moteur sans pays : types, boucle année par année, comparaison, budget (budget.ts)
-src/import/        lecture des relevés CSV et classement (csv.ts, categories.ts)
+src/import/        lecture des relevés CSV et classement (csv.ts, categories.ts, files.ts), tableau de bord (dashboard.ts)
 src/profile.ts     profils, exemple fictif, stockage local, export/import
 src/countries/be/  module Belgique-Wallonie : params.ts (barèmes datés et sources), tax.ts (calculs purs), module.ts (année)
 src/defaults.ts    hypothèses par défaut (coûts de l'enfant, exemple de ménage)

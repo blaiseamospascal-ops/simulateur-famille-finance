@@ -7,6 +7,7 @@
   import type { Tx } from './import/csv';
   import BudgetView from './ui/BudgetView.svelte';
   import ImportView from './ui/ImportView.svelte';
+  import DashboardView from './ui/DashboardView.svelte';
   import ProfilesView from './ui/ProfilesView.svelte';
   import Chart from './ui/Chart.svelte';
   import MultiLine from './ui/MultiLine.svelte';
@@ -48,10 +49,11 @@
     persist();
   }
 
-  type Tab = 'scen' | 'budget' | 'releves' | 'profils';
+  type Tab = 'scen' | 'budget' | 'depenses' | 'releves' | 'profils';
   let tab: Tab = $state('budget');
   const TABS: { id: Tab; label: string }[] = [
     { id: 'budget', label: 'Budget et épargne' },
+    { id: 'depenses', label: 'Mes dépenses' },
     { id: 'scen', label: 'Comparer des scénarios' },
     { id: 'releves', label: 'Relevés bancaires' },
     { id: 'profils', label: 'Profils et données' },
@@ -232,6 +234,8 @@
 
 {#if tab === 'budget'}
   <BudgetView bind:st {all} {household} {base} toSituation={toSituation} colors={SCEN_COLORS} />
+{:else if tab === 'depenses'}
+  <DashboardView bind:st bind:txs gotoReleves={() => (tab = 'releves')} />
 {:else if tab === 'releves'}
   <ImportView bind:st bind:txs />
 {:else if tab === 'profils'}
